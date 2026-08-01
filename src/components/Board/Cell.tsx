@@ -108,7 +108,7 @@ function CellImpl({
       whileHover={interactive && state === 'hidden' ? { scale: 1.05, y: -1 } : undefined}
       whileTap={interactive && state !== 'revealed' ? { scale: 0.9 } : undefined}
       className={`relative flex aspect-square w-full select-none items-center justify-center rounded-[9px] text-[clamp(11px,3.4vw,17px)] font-bold transition-colors duration-150 focus-visible:z-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-blue ${
-        state === 'hidden'
+        state === 'hidden' || state === 'flagged'
           ? 'cursor-pointer bg-hidden shadow-[0_2px_0_0_var(--color-border-strong)] hover:bg-hidden-hover active:translate-y-px active:shadow-none'
           : isExploded
             ? 'bg-accent-red text-white shadow-inner'
