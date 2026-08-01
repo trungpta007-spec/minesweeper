@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+@import 'tailwindcss';
+
+/* Class-based dark mode toggle instead of Tailwind v4's default media-query strategy. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-display: 'Plus Jakarta Sans', 'Segoe UI', system-ui, sans-serif;
+  --font-body: 'Inter', 'Segoe UI', system-ui, sans-serif;
+
+  --color-bg: #f5f7fa;
+  --color-surface: #ffffff;
+  --color-surface-muted: #eef1f6;
+  --color-hidden: #e3e8f0;
+  --color-hidden-hover: #edf1f7;
+  --color-hidden-active: #d7dee8;
+  --color-revealed: #fbfcfe;
+  --color-border: #e1e6ed;
+  --color-border-strong: #cbd3de;
+  --color-text: #1f2430;
+  --color-text-muted: #6b7280;
+
+  --color-accent-blue: #1a73e8;
+  --color-accent-red: #d93025;
+  --color-accent-green: #1e8e3e;
+
+  --color-number-1: #1a73e8;
+  --color-number-2: #1e8e3e;
+  --color-number-3: #d93025;
+  --color-number-4: #8430ce;
+  --color-number-5: #e8710a;
+  --color-number-6: #12b5cb;
+  --color-number-7: #8d6e63;
+  --color-number-8: #5f6368;
+
+  --animate-pop: pop 0.24s cubic-bezier(0.34, 1.56, 0.64, 1);
+  --animate-shake: board-shake 0.45s ease-in-out;
+  --animate-pulse-ring: pulse-ring 1.6s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+
+  @keyframes pop {
+    0% {
+      transform: scale(0.85);
+    }
+    60% {
+      transform: scale(1.06);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  @keyframes board-shake {
+    0%,
+    100% {
+      transform: translateX(0);
+    }
+    15% {
+      transform: translateX(-6px) rotate(-0.4deg);
+    }
+    30% {
+      transform: translateX(5px) rotate(0.4deg);
+    }
+    45% {
+      transform: translateX(-4px);
+    }
+    60% {
+      transform: translateX(3px);
+    }
+    75% {
+      transform: translateX(-2px);
+    }
+  }
+
+  @keyframes pulse-ring {
+    0% {
+      box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-accent-red) 45%, transparent);
+    }
+    70% {
+      box-shadow: 0 0 0 10px color-mix(in srgb, var(--color-accent-red) 0%, transparent);
+    }
+    100% {
+      box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-accent-red) 0%, transparent);
+    }
+  }
+}
+
+.dark {
+  --color-bg: #12151b;
+  --color-surface: #1b1f27;
+  --color-surface-muted: #232833;
+  --color-hidden: #2b3038;
+  --color-hidden-hover: #343a44;
+  --color-hidden-active: #3d4450;
+  --color-revealed: #1a1e25;
+  --color-border: #2c313b;
+  --color-border-strong: #3a414d;
+  --color-text: #eceff4;
+  --color-text-muted: #9aa3b2;
+
+  --color-number-1: #6ea6f7;
+  --color-number-2: #5fc98d;
+  --color-number-3: #f2897f;
+  --color-number-4: #c68af9;
+  --color-number-5: #fbb768;
+  --color-number-6: #52d4e6;
+  --color-number-7: #c3a393;
+  --color-number-8: #b0b7c3;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--color-bg);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.35s ease, color 0.35s ease;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--color-accent-blue) 30%, transparent);
+}
+
+/* Respect reduced-motion preferences across the whole app. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
